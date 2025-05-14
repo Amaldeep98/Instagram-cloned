@@ -143,6 +143,7 @@ body{
     font-size: 13.9px;
     cursor: pointer;
 }
+
 .question{
     padding-left: 38px;
     padding-top: 58px;
@@ -192,4 +193,15 @@ body{
     cursor: pointer;
 }
 
-
+.forgot-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    width: 100%; /* Full width to ensure centering */
+    padding-top: 25px;
+}
+.forgot {
+    text-align: center;
+    color: aliceblue;
+    font-size: 14px;
+}
